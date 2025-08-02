@@ -49,12 +49,6 @@ mvn spring-boot:run
 
 The application will start on `http://localhost:8080`
 
-### 5. Verify Installation
-- Swagger UI: `http://localhost:8080/swagger-ui.html`
-- Health Check: `http://localhost:8080/actuator/health`
-
-## API Documentation
-
 ### Base URL
 ```
 http://localhost:8080/api/v1
