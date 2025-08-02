@@ -1,0 +1,565 @@
+{
+	"info": {
+		"_postman_id": "turno-los-api-collection",
+		"name": "Turno LOS API",
+		"description": "Complete API collection for Turno Loan Origination System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Loan Management",
+			"item": [
+				{
+					"name": "Submit Loan Application",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"customerName\": \"John Doe\",\n  \"customerPhone\": \"+1234567890\",\n  \"loanAmount\": 50000.00,\n  \"loanType\": \"PERSONAL\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/loans",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans"
+							]
+						},
+						"description": "Submit a new loan application for processing"
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Auto Loan (High Amount)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"customerName\": \"Jane Smith\",\n  \"customerPhone\": \"+1987654321\",\n  \"loanAmount\": 75000.00,\n  \"loanType\": \"AUTO\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/loans",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans"
+							]
+						},
+						"description": "Submit auto loan that will require agent review (>$50K)"
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Home Loan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"customerName\": \"Bob Johnson\",\n  \"customerPhone\": \"+1555123456\",\n  \"loanAmount\": 250000.00,\n  \"loanType\": \"HOME\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/loans",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans"
+							]
+						},
+						"description": "Submit home loan that will require agent review (>$200K)"
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Business Loan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"customerName\": \"Alice Corp\",\n  \"customerPhone\": \"+1444555666\",\n  \"loanAmount\": 150000.00,\n  \"loanType\": \"BUSINESS\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/loans",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans"
+							]
+						},
+						"description": "Submit business loan that will require agent review (>$100K)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Loan by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/loans/{{loanId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans",
+								"{{loanId}}"
+							]
+						},
+						"description": "Retrieve a loan application by its database ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Loan by Loan ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/loans/by-loan-id/{{loanIdString}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans",
+								"by-loan-id",
+								"{{loanIdString}}"
+							]
+						},
+						"description": "Retrieve a loan application by its loan ID (e.g., LOAN-ABC123)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Loans by Status - APPLIED",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/loans?status=APPLIED&page=0&size=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "APPLIED"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Get loans with APPLIED status with pagination"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Loans by Status - APPROVED_BY_SYSTEM",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/loans?status=APPROVED_BY_SYSTEM&page=0&size=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "APPROVED_BY_SYSTEM"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Get loans approved by system"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Loans by Status - UNDER_REVIEW",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/loans?status=UNDER_REVIEW&page=0&size=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "UNDER_REVIEW"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Get loans under agent review"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Loan Status Count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/loans/status-count",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans",
+								"status-count"
+							]
+						},
+						"description": "Retrieve count of loans in each status"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Top Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/loans/customers/top",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"loans",
+								"customers",
+								"top"
+							]
+						},
+						"description": "Retrieve top 3 customers with most approved loans"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for loan application submission and management"
+		},
+		{
+			"name": "Agent Management",
+			"item": [
+				{
+					"name": "Process Agent Decision - APPROVE",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"decision\": \"APPROVE\",\n  \"reason\": \"Customer meets all criteria for loan approval\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/agents/{{agentId}}/loans/{{loanIdString}}/decision",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"agents",
+								"{{agentId}}",
+								"loans",
+								"{{loanIdString}}",
+								"decision"
+							]
+						},
+						"description": "Process agent's approval decision on a loan"
+					},
+					"response": []
+				},
+				{
+					"name": "Process Agent Decision - REJECT",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"decision\": \"REJECT\",\n  \"reason\": \"Insufficient credit history and high debt-to-income ratio\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/agents/{{agentId}}/loans/{{loanIdString}}/decision",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"agents",
+								"{{agentId}}",
+								"loans",
+								"{{loanIdString}}",
+								"decision"
+							]
+						},
+						"description": "Process agent's rejection decision on a loan"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Agent by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/agents/{{agentId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"agents",
+								"{{agentId}}"
+							]
+						},
+						"description": "Retrieve an agent by their database ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Agent by Agent ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/agents/by-agent-id/{{agentIdString}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"agents",
+								"by-agent-id",
+								"{{agentIdString}}"
+							]
+						},
+						"description": "Retrieve an agent by their agent ID (e.g., AGENT-001)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Active Agents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/agents",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"agents"
+							]
+						},
+						"description": "Retrieve all active agents in the system"
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Agent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/agents?agentId=AGENT-007&name=New Agent&email=new.agent@turno.com",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"agents"
+							],
+							"query": [
+								{
+									"key": "agentId",
+									"value": "AGENT-007"
+								},
+								{
+									"key": "name",
+									"value": "New Agent"
+								},
+								{
+									"key": "email",
+									"value": "new.agent@turno.com"
+								}
+							]
+						},
+						"description": "Create a new agent in the system"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for agent operations and decision processing"
+		},
+		{
+			"name": "System Health",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/actuator/health",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						},
+						"description": "Check application health status"
+					},
+					"response": []
+				},
+				{
+					"name": "Application Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/actuator/info",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"actuator",
+								"info"
+							]
+						},
+						"description": "Get application information"
+					},
+					"response": []
+				},
+				{
+					"name": "Metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/actuator/metrics",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"actuator",
+								"metrics"
+							]
+						},
+						"description": "Get application metrics"
+					},
+					"response": []
+				}
+			],
+			"description": "System monitoring and health check endpoints"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "loanId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "loanIdString",
+			"value": "LOAN-ABC123",
+			"type": "string"
+		},
+		{
+			"key": "agentId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "agentIdString",
+			"value": "AGENT-001",
+			"type": "string"
+		}
+	]
+}
